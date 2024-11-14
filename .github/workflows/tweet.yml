@@ -25,9 +25,3 @@ jobs:
     - name: Run Python script
       run: |
         python your_script.py  # Pythonスクリプトを実行
-      env:
-        BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}  # GitHub Secretsに保存したAPIキーなどの環境変数を使用
-        CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-        CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
