@@ -1,0 +1,33 @@
+name: Tweet random quote
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 毎時0分に実行
+  workflow_dispatch:  # 手動で実行するオプションも追加
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest  # GitHub Actionsで実行するOS（Ubuntu）
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # リポジトリのコードをチェックアウト
+
+    - name: Set up Python
+      uses: actions/setup-python@v2  # Pythonのセットアップ
+      with:
+        python-version: 3.9  # Pythonのバージョン
+
+    - name: Install dependencies
+      run: |
+        pip install tweepy pandas  # 必要なライブラリをインストール
+
+    - name: Run Python script
+      run: |
+        python your_script.py  # Pythonスクリプトを実行
+      env:
+        BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}  # GitHub Secretsに保存したAPIキーなどの環境変数を使用
+        CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+        CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
